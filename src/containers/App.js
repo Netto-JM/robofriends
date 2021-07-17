@@ -6,6 +6,7 @@ import ErrorBoundary from '../components/ErrorBoundary.js';
 import { useDispatch, useSelector } from 'react-redux'
 import { setSearchField, requestRobots } from '../actions'
 import './App.css';
+import loader from '../loader.svg';
 
 function App() {
 
@@ -36,7 +37,14 @@ function App() {
       <h1 className='f1'>RoboFriends</h1>
       <SearchBox searchChange={onSearchChange}/>
       <Scroll>
-        { isPending ? <h1>Loading</h1> :
+        { 
+        	isPending 
+        	?
+    	    <>
+    	    	<h1 class="header">Loading...</h1>
+   	 				<img class="loader" src={loader} alt="Loading"/>
+					</>
+        	:
           <ErrorBoundary>
             <CardList robots={filteredRobots} />
           </ErrorBoundary>
